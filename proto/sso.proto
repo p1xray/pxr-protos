@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package sso;
+
+option go_package = "pxr.sso;ssopb;";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+
+service Sso {
+  rpc Login (LoginRequest) returns (LoginResponse);
+  rpc Register (RegisterRequest) returns (RegisterResponse);
+  rpc RefreshTokens (RefreshTokensRequest) returns (RefreshTokensResponse);
+  rpc Logout (LogoutRequest) returns (LogoutResponse);
+}
+
+enum Gender {
+  GENDER_UNSPECIFIED = 0;
+  GENDER_MALE = 1;
+  GENDER_FEMALE = 2;
+}
+
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+  string clientCode = 3;
+  string userAgent = 4;
+  string fingerprint = 5;
+}
+
+message LoginResponse {
+  string accessToken = 1;
+  string refreshToken = 2;
+}
+
+message RegisterRequest {
+  string userName = 1;
+  string password = 2;
+  string clientCode = 3;
+  string fio = 4;
+  google.protobuf.Timestamp dateOfBirth = 5;
+  Gender gender = 6;
+  google.protobuf.StringValue avatarFileKey = 7;
+  string userAgent = 8;
+  string fingerprint = 9;
+}
+
+message RegisterResponse {
+  string accessToken = 1;
+  string refreshToken = 2;
+}
+
+message RefreshTokensRequest {
+  string refreshToken = 1;
+  string userAgent = 2;
+  string fingerprint = 3;
+}
+
+message RefreshTokensResponse {
+  string accessToken = 1;
+  string refreshToken = 2;
+}
+
+message LogoutRequest {
+  string refreshToken = 1;
+}
+
+message LogoutResponse {
+  bool success = 1;
+}
