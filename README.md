@@ -1,2 +1,2 @@
-# pxr-protos
-Proto files for the PXR projects
+# pxr-sso-protos
+Proto files for the SSO
