@@ -26,6 +26,7 @@ message LoginRequest {
   string clientCode = 3;
   string userAgent = 4;
   string fingerprint = 5;
+  string issuer = 6;
 }
 
 message LoginResponse {
@@ -34,7 +35,7 @@ message LoginResponse {
 }
 
 message RegisterRequest {
-  string userName = 1;
+  string username = 1;
   string password = 2;
   string clientCode = 3;
   string fio = 4;
@@ -43,6 +44,7 @@ message RegisterRequest {
   google.protobuf.StringValue avatarFileKey = 7;
   string userAgent = 8;
   string fingerprint = 9;
+  string issuer = 10;
 }
 
 message RegisterResponse {
@@ -54,6 +56,8 @@ message RefreshTokensRequest {
   string refreshToken = 1;
   string userAgent = 2;
   string fingerprint = 3;
+  string clientCode = 4;
+  string issuer = 5;
 }
 
 message RefreshTokensResponse {
@@ -63,6 +67,7 @@ message RefreshTokensResponse {
 
 message LogoutRequest {
   string refreshToken = 1;
+  string clientCode = 2;
 }
 
 message LogoutResponse {
