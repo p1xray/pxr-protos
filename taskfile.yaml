@@ -5,5 +5,7 @@ tasks:
     aliases:
       - gen
     desc: 'Generate code from proto files'
+    vars:
+      FILE: '{{.FILE | default "sso"}}'
     cmds:
-      - protoc -I proto proto/sso.proto --go_out=./gen/go/sso --go_opt=paths=source_relative --go-grpc_out=./gen/go/sso --go-grpc_opt=paths=source_relative
+      - protoc -I proto proto/{{.FILE}}.proto --go_out=./gen/go/{{.FILE}} --go_opt=paths=source_relative --go-grpc_out=./gen/go/{{.FILE}} --go-grpc_opt=paths=source_relative
